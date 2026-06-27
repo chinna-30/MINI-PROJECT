@@ -161,21 +161,15 @@ void buzzer_off(void)
 void locker_open(void)
 {
 	IOSET0 = m1;
-
-	IOCLR0 = m2;
-
+ 	IOCLR0 = m2;
 	delay_ms(3000);
-
 	IOCLR0 = m1;
 }
 
 void locker_close(void)
 {
 	IOSET0 = m2;
-
 	IOCLR0 = m1;
-
 	delay_ms(3000);
-
 	IOCLR0 = m2;
 }
