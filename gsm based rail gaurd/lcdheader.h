@@ -99,3 +99,27 @@ void LCD_STRSCROL(unsigned char *s,unsigned char i)
 		i++;
   }
 }
+void LCD_SCROLL_RL(unsigned char *msg)
+{
+    unsigned char buf[120] = "                "; // 16 leading spaces
+    int i, j = 16,k;
+
+    while(*msg)
+        buf[j++] = *msg++;
+
+    for(i = 0; i < 16; i++)      // 16 trailing spaces
+        buf[j++] = ' ';
+
+    buf[j] = '\0';
+
+    for(i = 0; i <= j - 16; i++)
+    {
+        LCD_COMMAND(0x80);       // First line, first position
+
+        
+        for(k = 0; k < 16; k++)
+            LCD_DATA(buf[i + k]);
+
+        delay_ms(200);
+    }
+}
